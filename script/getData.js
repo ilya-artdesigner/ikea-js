@@ -52,7 +52,7 @@ export const getData = {
                     }
                 }
             });
-            result = (result.length) ? result : `Ничего не найдено`;
+            result = (result.length) ? result : `По вашему запросу ничего не найдено`;
         callback(result);
         });
     },
