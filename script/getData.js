@@ -12,16 +12,10 @@ export const getData = {
         .then(process);
     },
     wishList(list, callback) {
-        if (Array.isArray(list) && list.lenght) {
-            this.get((data) => {
-                const result = data.filter((item) => list.includes(item.id));
-                callback(result);
-            });
-        } else {
-            const result = "Ваш список пуст";
+        this.get((data) => {
+            const result = data.filter((item) => list.includes(item.id));
             callback(result);
-        }
-        
+        });
     },
     item(value, callback) {
         this.get((data) => {
@@ -45,15 +39,14 @@ export const getData = {
     },
     search(value, callback) {
         this.get((data) => {
-            let result = data.filter( (item) => {
+            const result = data.filter( (item) => {
                 for (const prop in item) {
                     if ( PARAM.search.includes(prop) && item[prop].toLowerCase().includes(value.toLowerCase()) ) {
                         return true;
                     }
                 }
             });
-            result = (result.length) ? result : `По вашему запросу ничего не найдено`;
-        callback(result);
+            callback(result);
         });
     },
     catalog(callback) {

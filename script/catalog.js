@@ -6,7 +6,6 @@ export const catalog = () => {
     const btnBurger = document.querySelector('.btn-burger');
     const catalog = document.querySelector('.catalog');
     const subCatalog = document.querySelector('.subcatalog');
-   /*  const subCatalogHeader = document.querySelector('.subcatalog-header'); */
 
     const overlay = document.createElement('div');
     overlay.classList.add('overlay');
