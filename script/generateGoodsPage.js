@@ -62,7 +62,7 @@ const generateGoodsPage = () => {
         
         if (prop === 's') {
             getData.search(value, generateCards);
-            mainHeader.textContent = `Поиск: ${value}`;
+            mainHeader.textContent = `Поиск: ${value.includes('+') ? value.split('+').join(' ') : value}`;
         } else if (prop === 'wishlist') {
             getData.wishList(userData.wishList, generateCards);
             mainHeader.textContent = `Список желаний`;
