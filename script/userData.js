@@ -15,7 +15,6 @@ export const userData = {
             this._wishListData.splice(index, 1);
         } else {
             this._wishListData.push(id);
-            console.log(id);
         }
         setLocalStorage('wishList', this._wishListData);
     },
