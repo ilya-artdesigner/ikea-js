@@ -1,16 +1,18 @@
 'use strict';
 
 import {getData} from './getData.js';
+import { userData } from './userData.js';
 
-const wishList = ['idd081', 'idd021', 'idd077', 'idd101'];
 const COUNTER = 6;
 
 const generateGoodsPage = () => {
 
     const mainHeader = document.querySelector('.main-header');
-    const goodsList = document.querySelector('.goods-list');
 
     const generateCards = (data) => {
+        
+        const goodsList = document.querySelector('.goods-list');
+
         goodsList.textContent = '';
         if (data.length) {
             data.forEach( ( {count: count, id: id, img: imgList, name: itemName, description: desc, price: price } ) => {
@@ -35,6 +37,15 @@ const generateGoodsPage = () => {
                     </a>
                 </li>
                 `);
+
+                goodsList.addEventListener('click', (event) => {
+                    const btnAddCart = event.target.closest('.btn-add-card');
+                    if (btnAddCart) {
+                        event.preventDefault();
+                        userData.cartlist = btnAddCart.dataset.idd;
+                    }
+                });
+
             });
         } else {
             const goods = document.querySelector('.goods');
@@ -53,13 +64,14 @@ const generateGoodsPage = () => {
             getData.search(value, generateCards);
             mainHeader.textContent = `Поиск: ${value}`;
         } else if (prop === 'wishlist') {
-            getData.wishList(wishList, generateCards);
+            getData.wishList(userData.wishList, generateCards);
             mainHeader.textContent = `Список желаний`;
         } else if (prop === 'cat' || prop === 'subcat') {
             getData.category(prop, value, generateCards);
             mainHeader.textContent = value;
         }
     }
+
 };
 
 export default generateGoodsPage;
