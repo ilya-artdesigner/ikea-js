@@ -16,8 +16,19 @@ const generateCartPage = () => {
         const productDescr = document.querySelector('.product_description-text');
         const productTotalPrice = document.querySelector('.product__total');
         const productControls = document.querySelector('.product-controls__quantity'); */
-        
-        data.forEach( ({count: count, id: id, img: imgList, name: itemName, description: desc, price: price }) => {
+
+
+        const getTotalProductPrice = (count , price) => {
+            let result = price.includes(',') ? price.split(',') : 
+                         price.includes('.') ? price.split('.') : price;
+            return result.reduce((ceil, drob) => parseFloat(ceil * count + parseFloat(drob * count / 100).toFixed(2)), result[0]);
+        };
+
+        const getTotalCartPrice = (data) => {
+            
+        };
+
+        data.forEach( ({count: count, id: id,}, {img, name: itemName, description: desc, price: price }) => {
 
             
 
@@ -34,8 +45,13 @@ const generateCartPage = () => {
                     <div class="product__prices">
                         <div class="product__price-type product__price-type-regular">
                             <div>
-                                <div class="product__total product__total-regular">99.-</div>
-                                <!--    <div class="product__price-regular">99.-</div>  -->
+                                ${ count > 1 ? 
+                                    `<div class="product__price-regular">
+                                        ${getTotalProductPrice(count, price)}
+                                    </div>
+                                    <div class="product__total product__total-regular">${price}</div>` :
+                                    `<div class="product__price-regular">${price}</div>`
+                                }
                             </div>
                         </div>
                     </div>
@@ -61,17 +77,6 @@ const generateCartPage = () => {
             `);
 
         });
-
-
-        productImageContainer.insertAdjacentHTML("afterbegin", `
-            <img src="${img[0]}" alt="${itemName}" aria-describedby="${description}" itemprop="image">
-        `);
-
-        productName.insertAdjacentHTML("afterbegin", `
-            <a href="card.html#${id}">${itemName}</a>
-        `);
-
-        productDescr.textContent = description;
 
 
 

@@ -2,7 +2,6 @@
 
 import { getLocalStorage, setLocalStorage } from './storage.js';
 
-
 export const userData = {
     _wishListData: getLocalStorage('wishList'),
 
@@ -31,11 +30,10 @@ export const userData = {
         if (good) {
             good.count++;
         } else {
-            good = { id, count: 1 };
+            good = { id, count: 1};
             this._cartListData.push(good);
         }
 
         setLocalStorage('cartList', this._cartListData);
     }
-
 };
