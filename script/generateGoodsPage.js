@@ -42,7 +42,7 @@ const generateGoodsPage = () => {
                     const btnAddCart = event.target.closest('.btn-add-card');
                     if (btnAddCart) {
                         event.preventDefault();
-                        userData.cartlist = btnAddCart.dataset.idd;
+                        userData.cartList = btnAddCart.dataset.idd;
                     }
                 });
 

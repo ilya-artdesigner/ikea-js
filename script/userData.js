@@ -1,7 +1,10 @@
 'use strict';
 
+import { getLocalStorage, setLocalStorage } from './storage.js';
+
+
 export const userData = {
-    _wishListData: [],
+    _wishListData: getLocalStorage('wishList'),
 
     get wishList() {
         return this._wishListData;
@@ -14,24 +17,10 @@ export const userData = {
             this._wishListData.push(id);
             console.log(id);
         }
+        setLocalStorage('wishList', this._wishListData);
     },
 
-
-    /* {
-            id: 'idd098',
-            count: 3
-        },
-        {
-            id: 'idd023',
-            count: 7
-        },
-        {
-            id: 'idd072',
-            count: 2
-        }
-    */
-
-    _cartListData: [],
+    _cartListData: getLocalStorage('cartList'),
 
     get cartList() {
         return this._cartListData;
@@ -43,12 +32,11 @@ export const userData = {
         if (good) {
             good.count++;
         } else {
-            good = {
-                id,
-                count: 1
-            }
+            good = { id, count: 1 };
             this._cartListData.push(good);
         }
+
+        setLocalStorage('cartList', this._cartListData);
     }
 
 };
