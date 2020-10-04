@@ -43,6 +43,7 @@ const generateGoodsPage = () => {
                     if (btnAddCart) {
                         event.preventDefault();
                         userData.cartList = btnAddCart.dataset.idd;
+                        
                     }
                 });
 

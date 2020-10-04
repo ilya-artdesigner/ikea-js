@@ -35,5 +35,27 @@ export const userData = {
         }
 
         setLocalStorage('cartList', this._cartListData);
+    },
+
+    set CountCartList({id, count}) {
+
+        let goodItem = this._cartListData.find(item => item.id === id);
+        
+        goodItem.count = count;
+
+        setLocalStorage('cartList', this.cartList)
+    },
+
+    set removeFromCartList(idd) {
+    
+        const goodInCart = this._cartListData.find(item => item.id === idd);
+
+        if (goodInCart) {
+            const index = this._cartListData.indexOf(goodInCart);
+            this._cartListData.splice(index, 1);
+
+            setLocalStorage('cartList', this.cartList);
+        }
+        
     }
 };
