@@ -30,7 +30,7 @@ const generateCartPage = () => {
                     }
     
                     for (let i = 1; i <= count; i++) {
-                        options += `<option value="${i}" ${userCount === i ? `selected` : ''} data-idd="${id}">${i}</option>`;
+                        options += `<option value="${i}" ${userCount === i ? `selected` : ''}>${i}</option>`;
                     }
     
                     totalPrice += parseFloat(price * userCount);
@@ -64,7 +64,7 @@ const generateCartPage = () => {
                                     </button>
                                 </div>
                                 <div class="product-controls__quantity">
-                                    <select title="Выберите количество" aria-label="Выберите количество">
+                                    <select title="Выберите количество" aria-label="Выберите количество" data-idd="${id}">
                                         ${options}
                                     </select>
                                 </div>
@@ -80,9 +80,11 @@ const generateCartPage = () => {
 
             cartList.addEventListener('change', (event) => {
 
+                const target = event.target;
+                
                 userData.CountCartList = {
-                    id: event.target.dataset.idd,
-                    count: parseInt(event.target.value)
+                    id: target.dataset.idd,
+                    count: parseInt(target.value)
                 };
 
                 getData.cart(userData.cartList, renderCartList);
