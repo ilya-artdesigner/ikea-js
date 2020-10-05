@@ -23,8 +23,6 @@ const generateItemPage = () => {
 
         goodImages.textContent = '';
 
-        goodItemEmpty
-
         goodItemHeader.textContent = itemName;
         goodItemDescription.textContent = description;
         

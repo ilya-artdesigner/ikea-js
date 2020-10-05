@@ -750,6 +750,7 @@ footer {
 	grid-template-rows: auto;
 	font-size: .81rem;
 	line-height: 1.385;
+	padding-bottom: 2rem;
 }
 
 .product > *:nth-child(1) {
